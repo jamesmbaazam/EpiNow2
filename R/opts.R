@@ -33,11 +33,7 @@
 #' # A generation time sourced from the ligerature
 #' dist <- get_generation_time(disease = "SARS-CoV-2", source = "ganyani")
 #' generation_time_opts(dist)
-generation_time_opts <- function(dist, prior_weight = NULL) {
-
-  if (missing(dist)) {
-    dist <- dist_spec(mean = 1)
-  }
+generation_time_opts <- function(dist = dist_spec(mean = 1), prior_weight = NULL) {
   if (!"dist_spec" %in% class(dist)) {
     stop("The generation time distribution must be of given either using a call ",
          "to `dist_spec` or `get_generation_time`. ",
