@@ -42,12 +42,8 @@ generation_time_opts <- function(dist = dist_spec(mean = 1), prior_weight = NULL
          "information, see the relevant documentation pages using ",
          "`?generation_time_opts`")
   }
-  data <- unclass(dist)
-  data$fixed <- NULL ## not used in stan model
-  data$names <- NULL ## not used in stan model
+  data <- to_stan(dist, "gt")
   data$weight <- prior_weight
-  names(data) <- paste0("gt_", names(data))
-
   return(data)
 }
 
@@ -87,11 +83,8 @@ delay_opts <- function(dist = dist_spec(), prior_weight = NULL) {
          "information, see the relevant documentation pages using ",
          "`?delay_opts`")
   }
-  data <- unclass(dist)
-  data$fixed <- NULL ## not used in stan model
+  data <- to_stan(dist, "delay")
   data$weight <- prior_weight
-  data$names <- NULL ## not used in stan model
-  names(data) <- paste0("delay_", names(data))
 
   # Estimate the mean delay -----------------------------------------------
   data$seeding_time <- sum(mean(dist))
@@ -135,10 +128,7 @@ trunc_opts <- function(dist = dist_spec()) {
          "information, see the relevant documentation pages using ",
          "`?trunc_opts`")
   }
-  data <- unclass(dist)
-  data$fixed <- NULL ## not used in stan model
-  data$names <- NULL ## not used in stan model
-  names(data) <- paste0("trunc_", names(data))
+  data <- to_stan(dist, "trunc")
   return(data)
 }
 
