@@ -50,7 +50,6 @@
 #' @inheritParams calc_CrIs
 #' @importFrom data.table data.table copy merge.data.table as.data.table
 #' @importFrom data.table setorder rbindlist melt .N setDT
-#' @importFrom purrr transpose
 #' @importFrom lubridate days
 #' @importFrom purrr transpose
 #' @importFrom futile.logger flog.threshold flog.warn flog.debug
