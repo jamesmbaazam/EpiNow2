@@ -321,7 +321,7 @@ gamma_dist_def <- function(shape, shape_sd,
 
   dist <- data.table::data.table(
     model = rep("gamma", samples),
-    params = purrr::transpose(
+    params = purrr::list_transpose(
       list(
         alpha = alpha,
         beta = beta
@@ -401,7 +401,7 @@ lognorm_dist_def <- function(mean, mean_sd,
 
   dist <- data.table::data.table(
     model = rep("lognorm", samples),
-    params = purrr::transpose(
+    params = purrr::list_transpose(
       list(
         mean = means,
         sd = sds
@@ -446,7 +446,7 @@ lognorm_dist_def <- function(mean, mean_sd,
 #'
 #' @return A list summarising the bootstrapped distribution
 #' @author Sam Abbott
-#' @importFrom purrr transpose
+#' @importFrom purrr list_transpose
 #' @importFrom future.apply future_lapply
 #' @importFrom rstan extract
 #' @importFrom data.table data.table rbindlist
@@ -522,7 +522,7 @@ bootstrapped_dist_fit <- function(values, dist = "lognormal",
     )
 
 
-    dist_samples <- purrr::transpose(dist_samples)
+    dist_samples <- purrr::list_transpose(dist_samples)
     dist_samples <- purrr::map(dist_samples, unlist)
   }
 

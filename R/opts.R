@@ -144,7 +144,7 @@ delay_opts <- function(..., fixed = FALSE) {
   }
 
   if (length(data) > 0) {
-    data <- purrr::transpose(data)
+    data <- purrr::list_transpose(data)
     ## convert back to arrays
     data <- lapply(data, function(x) array(unlist(x)))
   } else {

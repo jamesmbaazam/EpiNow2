@@ -29,7 +29,7 @@
 #' @param verbose Logical defaults to `interactive()`. Should a progress bar
 #' (from `progressr`) be shown.
 #' @importFrom rstan extract sampling
-#' @importFrom purrr transpose map safely compact
+#' @importFrom purrr list_transpose map safely compact
 #' @importFrom future.apply future_lapply
 #' @importFrom progressr with_progress progressor
 #' @importFrom data.table rbindlist as.data.table
@@ -235,7 +235,7 @@ simulate_infections <- function(estimates,
     nends <- c(
       seq(batch_size, by = batch_size, length.out = batch_no - 1), samples
     )
-    batches <- transpose(list(nstarts, nends))
+    batches <- list_transpose(list(nstarts, nends))
   } else {
     batches <- list(list(1, samples))
   }
@@ -264,7 +264,7 @@ simulate_infections <- function(estimates,
 
   ## join batches
   out <- compact(out)
-  out <- transpose(out)
+  out <- list_transpose(out)
   out <- map(out, ~ data.table::rbindlist(.))
 
   ## format output
